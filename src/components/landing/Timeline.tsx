@@ -19,9 +19,7 @@ export function Timeline() {
           The History
         </p>
         <h2 className="max-w-2xl text-4xl leading-tight font-bold sm:text-5xl">
-          Six years in,
-          <br />
-          <span className="text-gold-400">still showing up.</span>
+Fundraising from previous events.
         </h2>
 
         <div className="mt-16 space-y-3">

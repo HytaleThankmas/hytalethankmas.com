@@ -5,13 +5,23 @@ import { Program } from '~/components/landing/Program'
 const FORMAT = [
   {
     title: 'The Livestream',
-    body: 'A full day on stream with people from the Hytale community: panels, games, and plenty of messing about. Past years have run anywhere from seven and a half to nearly eleven hours.',
+    body: 'Sunday, December 13, from 17:00 to 02:00 CET. Nine hours of panels, games, music, and community creations, supporting Make-A-Wish.',
     accent: 'gold' as const,
   },
   {
     title: 'In-Game, on Hytale',
-    body: 'For the first time, the playable side of the event runs on Hytale itself. Join the server and take part in the games instead of just watching them.',
+    body: 'For the first time, the playable side of Thankmas runs on Hytale itself. Explore the custom server hub and play new minigames and maps with friends and viewers.',
     accent: 'sage' as const,
+  },
+  {
+    title: 'Winter SMP & Building Competition',
+    body: 'A dedicated winter-themed SMP opens to everyone in early December, with a festive house building competition leading up to the stream.',
+    accent: 'sage' as const,
+  },
+  {
+    title: 'Festive Gadgets ModJam',
+    body: 'Create festive gadgets for the Thankmas Hub in a mini ModJam. The top three entries will be showcased live during the event.',
+    accent: 'gold' as const,
   },
 ]
 
@@ -26,7 +36,7 @@ export function Experience() {
         {phase === 'after' && 'The Recap'}
       </p>
       <h2 className="max-w-2xl text-4xl leading-tight font-bold sm:text-5xl">
-        {phase === 'before' && <>One day. Two ways to be there.</>}
+        {phase === 'before' && <>Watch the stream. Play on Hytale.</>}
         {phase === 'during' && <>Tonight&rsquo;s program.</>}
         {phase === 'after' && <>How it went.</>}
       </h2>
@@ -40,17 +50,15 @@ export function Experience() {
             >
               <div
                 aria-hidden="true"
-                className={`absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${
-                  item.accent === 'gold'
+                className={`absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${item.accent === 'gold'
                     ? 'bg-[radial-gradient(ellipse_at_top_left,rgba(255,200,100,0.08),transparent_60%)]'
                     : 'bg-[radial-gradient(ellipse_at_top_left,rgba(163,199,171,0.08),transparent_60%)]'
-                }`}
+                  }`}
               />
               <span
                 aria-hidden="true"
-                className={`h-3 w-3 ${
-                  item.accent === 'gold' ? 'bg-gold-500' : 'bg-sage-400'
-                }`}
+                className={`h-3 w-3 ${item.accent === 'gold' ? 'bg-gold-500' : 'bg-sage-400'
+                  }`}
               />
               <h3 className="text-2xl font-bold">{item.title}</h3>
               <p className="leading-relaxed text-cream-300">{item.body}</p>
@@ -61,7 +69,7 @@ export function Experience() {
 
       <div className="mt-14">
         <h3 className="font-mono text-sm font-semibold tracking-[0.25em] text-gold-400 uppercase">
-          {phase === 'before' && 'The schedule'}
+          {phase === 'before' && 'Confirmed segments'}
           {phase === 'during' && 'Live now, up next'}
           {phase === 'after' && 'The full stream'}
         </h3>
@@ -69,14 +77,16 @@ export function Experience() {
           <Program />
         </div>
         <p className="mt-6 font-mono text-xs text-cream-500">
-          Times shown in your local timezone.
+          {phase === 'before'
+            ? 'Segment times and running order are still subject to change.'
+            : 'Times shown in your local timezone. Segment details may change.'}
         </p>
       </div>
 
       {phase === 'before' && (
         <p className="mt-8 font-mono text-sm text-cream-500">
-          More details, like the full lineup and how to join the in-game event,
-          land here closer to the day.
+          The winter SMP opens in early December. ModJam details and information
+          on how to join the activities will be announced soon.
         </p>
       )}
 

@@ -50,7 +50,10 @@ function BeforeBlock() {
         style={{ animationDelay: '0.7s' }}
       >
         <span className="animate-flicker inline-block h-2 w-2 rounded-full bg-gold-400" />
-        <time dateTime="2026-12-12" className="tracking-[0.2em] uppercase">
+        <span className="tracking-[0.12em] uppercase">
+          {EVENT.streamTime} · ${EVENT.goal.toLocaleString('en-US')} goal
+        </span>
+        <time dateTime={EVENT.dateIso} className="tracking-[0.2em] uppercase">
           {EVENT.date}
         </time>
       </div>
@@ -71,9 +74,8 @@ function DuringBlock() {
       : 'Wrapping up'
   const status =
     !streamLive && inGameLive
-      ? `The stream is over. The in-game event stays open until ${
-          mounted ? liveTime(EVENT.inGameEnd) : '--:--'
-        }`
+      ? `The stream is over. The in-game event stays open until ${mounted ? liveTime(EVENT.inGameEnd) : '--:--'
+      }`
       : null
 
   return (
@@ -185,7 +187,7 @@ function AfterBlock() {
         className="animate-rise mt-10 flex items-center gap-4 font-mono text-sm text-cream-500"
         style={{ animationDelay: '0.75s' }}
       >
-        <time dateTime="2026-12-12" className="tracking-[0.2em] uppercase">
+        <time dateTime={EVENT.dateIso} className="tracking-[0.2em] uppercase">
           {EVENT.date}
         </time>
       </div>
@@ -263,6 +265,7 @@ export function Hero() {
 
       {/* hero core */}
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center px-6 text-center">
+
         <h1
           className="animate-rise text-glow-gold font-logotype text-[clamp(3.25rem,16vw,8rem)] leading-[1.02] tracking-[0.02em]"
           style={{ animationDelay: '0.15s' }}
@@ -272,25 +275,22 @@ export function Hero() {
           <span className="text-gold-400">Thankmas</span>
         </h1>
 
-        <p
-          className="animate-rise mt-8 max-w-xl text-lg text-cream-300 sm:text-xl"
-          style={{ animationDelay: '0.3s' }}
-        >
-          The Hytale community's yearly charity livestream returns for its{' '}
-          <strong className="font-semibold text-cream-100">
-            {EVENT.edition}th year
-          </strong>
-          , this time raising money for the{' '}
-          <a
-            href={EVENT.charityUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="whitespace-nowrap font-semibold text-gold-300 underline decoration-gold-500/50 underline-offset-4 transition-colors hover:text-gold-400 hover:decoration-gold-400"
+<p
+            className="animate-rise mt-8 max-w-xl text-lg text-cream-300 sm:text-xl"
+            style={{ animationDelay: '0.3s' }}
           >
-            {EVENT.charity}
-          </a>
-          .
-        </p>
+            Hytale Thankmas is the Hytale community's annual charity livestream.
+            Our seventh event is raising money for the{' '}
+            <a
+              href={EVENT.charityUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="whitespace-nowrap font-semibold text-gold-300 underline decoration-gold-500/50 underline-offset-4 transition-colors hover:text-gold-400 hover:decoration-gold-400"
+            >
+              {EVENT.charity}
+            </a>
+            .
+          </p>
 
         {phase === 'before' && <BeforeBlock />}
         {phase === 'during' && <DuringBlock />}

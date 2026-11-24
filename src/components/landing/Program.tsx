@@ -27,28 +27,35 @@ export function Program() {
   const phase = useEventPhase()
   const now = useNow(15_000)
   const mounted = useMounted()
-  const currentIndex = PROGRAM.findIndex((e) => now >= e.start && now < e.end)
+  const currentIndex = PROGRAM.findIndex(
+    (e) => e.start && e.end && now >= e.start && now < e.end,
+  )
 
   return (
     <ol className="space-y-3">
       {PROGRAM.map((entry, i) => {
         const isCurrent = i === currentIndex
-        const isPast = entry.end <= now
+        const isPast = entry.end ? entry.end <= now : false
         return (
           <li
-            key={entry.start.getTime()}
-            className={`panel flex flex-col gap-2 p-5 sm:flex-row sm:items-center sm:gap-6 sm:p-6 ${
-              isCurrent
+            key={entry.title}
+            className={`panel flex flex-col gap-2 p-5 sm:flex-row sm:items-center sm:gap-6 sm:p-6 ${isCurrent
                 ? 'border-gold-500/70 bg-gold-500/5 shadow-[0_0_30px_rgba(255,200,100,0.15)]'
                 : isPast && phase === 'during'
                   ? 'opacity-50'
                   : ''
-            }`}
+              }`}
           >
             <span className="shrink-0 font-mono text-sm text-cream-500 tabular-nums sm:w-36">
-              {mounted ? time(entry.start) : '--:--'}
-              <span className="text-cream-500/60"> – </span>
-              {mounted ? time(entry.end) : '--:--'}
+              {entry.start && entry.end ? (
+                <>
+                  {mounted ? time(entry.start) : '--:--'}
+                  <span className="text-cream-500/60"> – </span>
+                  {mounted ? time(entry.end) : '--:--'}
+                </>
+              ) : (
+                'Time TBA'
+              )}
             </span>
 
             <div className="min-w-0 flex-1">
@@ -67,11 +74,13 @@ export function Program() {
                 )}
               </div>
               <p
-                className={`mt-1 text-lg font-semibold ${
-                  isCurrent ? 'text-gold-300' : 'text-cream-100'
-                }`}
+                className={`mt-1 text-lg font-semibold ${isCurrent ? 'text-gold-300' : 'text-cream-100'
+                  }`}
               >
                 {entry.title}
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-cream-300">
+                {entry.description}
               </p>
               {entry.hosts && (
                 <p className="mt-0.5 text-sm text-cream-500">

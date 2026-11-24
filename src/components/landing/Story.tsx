@@ -10,30 +10,24 @@ export function Story() {
             The Story
           </p>
           <h2 className="text-4xl leading-tight font-bold sm:text-5xl">
-            For years we played in Minecraft.
-            <br />
-            <span className="text-glow-sage text-sage-300">
-              This year, we come home to Hytale.
-            </span>
+The games were on Minecraft for six years.
+              <br />
+              <span className="text-glow-sage text-sage-300">
+                This year, they're on Hytale.
+              </span>
           </h2>
           <div className="mt-8 space-y-5 text-lg leading-relaxed text-cream-300">
             <p>
-              Hytale Thankmas is the Hytale community's yearly charity
-              fundraiser, run as part of Jacksepticeye's Thankmas. It started
-              in 2021, and every December since the community has come
-              together for one day to play, watch, and give.
+Hytale Thankmas is a charity fundraiser run by the Hytale
+                community as part of Jacksepticeye's Thankmas. The first event
+                took place in 2021.
             </p>
             <p>
-              The day itself is an eight-plus-hour livestream built by members
-              of the community: panels, games, challenges, and whatever else
-              the day brings. Alongside the stream there are in-game events
-              that anyone can jump into and play.
+This year's stream runs for nine hours and includes panels,
+                games, music, and community submissions. Players can also join
+                the winter SMP, enter the ModJam, and play server minigames.
             </p>
-            <p>
-              For the first six years those games ran on Minecraft servers.
-              Now that Hytale is out, {EVENT.year} is the first year we
-              finally get to host them on Hytale itself.
-            </p>
+
             <p>
               Donations are collected through Tiltify, so the money goes
               straight to the charity and never passes through our hands.
@@ -54,14 +48,13 @@ export function Story() {
             <li className="flex gap-3">
               <span aria-hidden="true" className="mt-1.5 h-2 w-2 shrink-0 bg-gold-500" />
               <span>
-                A day-long livestream with people from the Hytale community:
-                panels, games, and whatever else happens on the day
+Nine hours of live panels, games, music, and community submissions
               </span>
             </li>
             <li className="flex gap-3">
               <span aria-hidden="true" className="mt-1.5 h-2 w-2 shrink-0 bg-sage-400" />
               <span>
-                In-game events on Hytale that players can jump into
+                A winter SMP, ModJam, and server minigames on Hytale
               </span>
             </li>
             <li className="flex gap-3">

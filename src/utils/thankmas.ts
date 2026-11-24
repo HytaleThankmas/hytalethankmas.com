@@ -76,31 +76,24 @@ export const TOTAL_STREAM_HOURS = Math.round(
     return sum + h + m / 60
   }, 0),
 )
-
-/** All event-day times are in the same (CET) timezone; entries render in the viewer's local time. */
-const at = (time: string) => new Date(`2026-12-12T${time}+01:00`)
-
 export const EVENT = {
   year: 2026,
   edition: 7,
-  date: 'December 12, 2026',
-  dateShort: '12.12.2026',
+  date: 'Sunday, December 13, 2026',
+  dateShort: '13.12.2026',
+  dateIso: '2026-12-13',
+  streamTime: '17:00–02:00 CET',
+  goal: 15_000,
   charity: 'Make-A-Wish Foundation',
   charityUrl: 'https://wish.org',
   // TODO: replace with the real stream/channel link
   streamUrl: 'https://www.youtube.com/@hytalethankmas',
-  // ── placeholders, adjust once the day's timeline is confirmed ──
-  /** When the livestream starts (also when the in-game event opens). */
-  streamStart: at('14:00'),
-  /** When the livestream wraps. */
-  streamEnd: at('23:00'),
-  /** The in-game event keeps running after the stream ends, until this time. */
-  inGameEnd: new Date('2026-12-13T02:00:00+01:00'),
-  /**
-   * When the site flips to the post-event ("after") version.
-   * Should be at/after `inGameEnd` so "during" covers the whole event.
-   */
-  afterStart: new Date('2026-12-13T02:00:00+01:00'),
+  /** The livestream and event-day in-game activities run from 17:00 to 02:00 CET. */
+  streamStart: new Date('2026-12-13T17:00:00+01:00'),
+  streamEnd: new Date('2026-12-14T02:00:00+01:00'),
+  inGameEnd: new Date('2026-12-14T02:00:00+01:00'),
+  /** The site switches to the post-event version when the event closes. */
+  afterStart: new Date('2026-12-14T02:00:00+01:00'),
 }
 
 export type EventPhase = 'before' | 'during' | 'after'
@@ -117,7 +110,7 @@ export function streamLiveAt(now: Date): boolean {
   return now >= EVENT.streamStart && now < EVENT.streamEnd
 }
 
-/** Whether the in-game event is open right now (runs longer than the stream). */
+/** Whether the event-day in-game activities are open right now. */
 export function inGameLiveAt(now: Date): boolean {
   return now >= EVENT.streamStart && now < EVENT.inGameEnd
 }
@@ -142,26 +135,67 @@ export type ProgramKind =
   | 'closing'
 
 export type ProgramEntry = {
-  start: Date
-  end: Date
   title: string
   kind: ProgramKind
+  description: string
+  /** Added when the final running order and segment times are confirmed. */
+  start?: Date
+  end?: Date
   hosts?: string[]
   /** Optional segment VOD, shown once it exists (after the event). */
   vodUrl?: string
 }
 
-/**
- * The stream schedule. Placeholder lineup — replace with the real one as it
- * firms up. Only covers the livestream (the in-game event runs alongside it
- * and continues until EVENT.inGameEnd).
- */
+/** Confirmed segments in the announced order. Segment times and the final running order are still subject to change. */
 export const PROGRAM: ProgramEntry[] = [
-  { start: at('14:00'), end: at('15:00'), title: 'Opening & welcome', kind: 'opening' },
-  { start: at('15:00'), end: at('16:30'), title: 'Community panel: year in Hytale', kind: 'panel' },
-  { start: at('16:30'), end: at('18:00'), title: 'In-game games on Hytale', kind: 'game' },
-  { start: at('18:00'), end: at('18:30'), title: 'Intermission', kind: 'intermission' },
-  { start: at('18:30'), end: at('20:00'), title: 'Main panel: the charity', kind: 'panel' },
-  { start: at('20:00'), end: at('22:00'), title: 'Community games & challenges', kind: 'game' },
-  { start: at('22:00'), end: at('23:00'), title: 'Finale, totals & thank yous', kind: 'closing' },
+  {
+    title: 'Welcome Wagon',
+    kind: 'opening',
+    description: 'A welcome to the event and the cause, with an on-stage musical performance to get things started.',
+  },
+  {
+    title: 'Server Hub, SMP & ModJam',
+    kind: 'segment',
+    description: 'Explore the custom Hytale server hub, the winter SMP builds, and the top three ModJam entries.',
+  },
+  {
+    title: 'Hytale Rewind 2026',
+    kind: 'segment',
+    description: 'A community-curated look back at the entire year in the world of Hytale.',
+  },
+  {
+    title: 'Roundtable: In-Game',
+    kind: 'panel',
+    description: 'The first roundtable hosted in the alterverse, featuring your favorite creators.',
+  },
+  {
+    title: 'The Tritale Games',
+    kind: 'game',
+    description: 'Three tests of skill, knowledge, and creativity to select the GOATs of 2026.',
+  },
+  {
+    title: 'Server Minigames',
+    kind: 'game',
+    description: 'Save the Kweebecs and play new maps and mechanics with friends and viewers.',
+  },
+  {
+    title: 'Community Show',
+    kind: 'segment',
+    description: 'Art, music, pre-recorded videos, mods, and creations of every kind, submitted by the community.',
+  },
+  {
+    title: 'Gaia Gauntlet: Christmas Special',
+    kind: 'game',
+    description: 'The popular live event shakes up its format for a festive Thankmas competition.',
+  },
+  {
+    title: 'The Final Battle',
+    kind: 'game',
+    description: 'Details of the final battle have not been announced yet.',
+  },
+  {
+    title: 'Closing Ceremony',
+    kind: 'closing',
+    description: 'The Hytale Awards, competition winners, and a fireworks display to close out the night.',
+  },
 ]

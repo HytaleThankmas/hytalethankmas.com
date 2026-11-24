@@ -33,7 +33,7 @@ export function Closing() {
           style={{ animationDelay: '0.1s' }}
         />
         <p className="animate-rise mt-10 mb-6 font-mono text-xs tracking-[0.3em] text-sage-400 uppercase [animation-delay:0.2s]">
-          <time dateTime="2026-12-12">{EVENT.date}</time>
+          <time dateTime={EVENT.dateIso}>{EVENT.date}</time>
         </p>
 
         {phase === 'before' && (
