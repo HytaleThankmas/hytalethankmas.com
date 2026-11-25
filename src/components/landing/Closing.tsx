@@ -1,6 +1,7 @@
 import { CURRENT_YEAR_ENTRY, EVENT, TOTAL_RAISED } from '~/utils/thankmas'
 import { useEventPhase } from '~/utils/useEventPhase'
 import { useLiveTotal } from '~/utils/useLiveTotal'
+import { asset } from '~/utils/assets'
 import { Spark } from '~/components/Spark'
 import { LiveBadge } from '~/components/landing/LiveBadge'
 
@@ -25,7 +26,7 @@ export function Closing() {
 
       <div className="relative mx-auto flex w-full max-w-6xl flex-col items-center px-6 py-24 text-center sm:py-32">
         <img
-          src="/logo.svg"
+          src={asset('logo.svg')}
           alt="Hytale Thankmas logo"
           width={300}
           height={300}

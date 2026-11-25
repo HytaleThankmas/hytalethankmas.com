@@ -2,6 +2,7 @@ import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import * as React from 'react'
 import { DefaultCatchBoundary } from '~/components/DefaultCatchBoundary'
 import { NotFound } from '~/components/NotFound'
+import { asset } from '~/utils/assets'
 import appCss from '~/styles/app.css?url'
 import { seo } from '~/utils/seo'
 import { getCurrentPhase, type EventPhase } from '~/utils/thankmas'
@@ -42,22 +43,22 @@ export const Route = createRootRoute({
         {
           rel: 'apple-touch-icon',
           sizes: '180x180',
-          href: '/apple-touch-icon.png',
+          href: asset('apple-touch-icon.png'),
         },
         {
           rel: 'icon',
           type: 'image/png',
           sizes: '32x32',
-          href: '/favicon-32x32.png',
+          href: asset('favicon-32x32.png'),
         },
         {
           rel: 'icon',
           type: 'image/png',
           sizes: '16x16',
-          href: '/favicon-16x16.png',
+          href: asset('favicon-16x16.png'),
         },
-        { rel: 'manifest', href: '/site.webmanifest' },
-        { rel: 'icon', href: '/favicon.ico' },
+        { rel: 'manifest', href: asset('site.webmanifest') },
+        { rel: 'icon', href: asset('favicon.ico') },
       ],
     }
   },

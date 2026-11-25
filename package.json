@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev --port 3000",
-    "build": "vite build && tsc --noEmit",
+    "build": "vite build && tsc --noEmit && node scripts/normalize-404.mjs",
     "preview": "vite preview",
     "start": "node .output/server/index.mjs"
   },
