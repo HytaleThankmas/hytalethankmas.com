@@ -10,10 +10,10 @@ export function Story() {
             The Story
           </p>
           <h2 className="text-4xl leading-tight font-bold sm:text-5xl">
-The games were on Minecraft for six years.
+For six years we made do with Minecraft.
               <br />
               <span className="text-glow-sage text-sage-300">
-                This year, they're on Hytale.
+                This year, we are finally in Hytale.
               </span>
           </h2>
           <div className="mt-8 space-y-5 text-lg leading-relaxed text-cream-300">
